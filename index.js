@@ -1,7 +1,7 @@
 const fetch = require('node-fetch')
 const async = require('async')
-const glassdoor = require('./glassdoor')
-const parsers = require('./parsers')
+const glassdoor = require('./lib/glassdoor')
+const parsers = require('./lib/parsers')
 
 const sites = [
   { 
