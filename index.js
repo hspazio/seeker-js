@@ -2,6 +2,7 @@ const fetch = require('node-fetch')
 const async = require('async')
 const glassdoor = require('./lib/glassdoor')
 const parsers = require('./lib/parsers')
+const jobsRepo = require('./lib/db').jobs
 
 const sites = [
   { 
@@ -23,6 +24,7 @@ sites.forEach((site) => {
    .then(res => res.text())
    .then(site.parser)
    .then((jobs) => { 
+     jobs.forEach(job => jobsRepo.update(job, job, { upsert: true}))
      async.map(jobs, glassdoor, (err, res) => {
        if (err) return console.error('error: ', err)
        console.log(res)
