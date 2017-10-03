@@ -10,7 +10,7 @@ module.exports = {
         source: 'weworkremotely.com',
         company: $('.company', job).text().trim(),
         title: $('.title', job).text().trim(),
-        link: $(job).prop('href').trim()
+        link: 'https://weworkremotely.com' + $(job).prop('href').trim()
       })
     })
 
@@ -26,7 +26,7 @@ module.exports = {
         source: 'remoteok.io',
         company: $(job).data('company').trim(),
         title: $(job).data('search').trim(),
-        link: $(job).data('url').trim()
+        link: 'https://remote.co' + $(job).data('url').trim()
       })
     })
 

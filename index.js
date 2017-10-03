@@ -23,8 +23,12 @@ sites.forEach((site) => {
   fetch(site.url)
    .then(res => res.text())
    .then(site.parser)
-   .then((jobs) => { 
-     jobs.forEach(job => jobsRepo.update(job, job, { upsert: true}))
+   .then((jobs) => {
+     jobs.forEach((job) => {
+       jobLookup = {company: job.company, title: job.title, link: job.link}
+       job.date = new Date()
+       jobsRepo.update(jobLookup, job, { upsert: true})
+     })
      async.map(jobs, glassdoor, (err, res) => {
        if (err) return console.error('error: ', err)
        console.log(res)
